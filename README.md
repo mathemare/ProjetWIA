@@ -24,6 +24,16 @@ La version de Tensorflow n'est pas la dernière, et quelques bugs (de simples _w
 Pour les instructions, lancez :
 
 ~~~
+# Pour créer les fichiers d'entraînement et de test
+python ./CreateTrainTestFiles.py
+
+# Pour créer les embeddings et adapter les données à l'entrainement du réseau de neurones
+python ./preprocessing.py
+
+# Pour entrainer le réseau de neurones
+python ./CNN.py
+
+# Pour obtenir l'aide du programme
 python ./main.py -h
 ~~~
 
