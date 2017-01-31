@@ -8,7 +8,7 @@ Le but de cette application est de permettre la détection d'une des 19 relation
 Par exemple :
 
 ~~~
-$ python ./main.py "The tree is coming from the forest ." -e1 1 -e2 6
+$ python src/main.py "The tree is coming from the forest ." -e1 1 -e2 6
 Relation trouvée : Entity-Origin(tree, forest)
 ~~~
 
@@ -25,16 +25,16 @@ Pour les instructions, lancez :
 
 ~~~
 # Pour créer les fichiers d'entraînement et de test
-python ./CreateTrainTestFiles.py
+python src/CreateTrainTestFiles.py
 
 # Pour créer les embeddings et adapter les données à l'entrainement du réseau de neurones
-python ./preprocessing.py
+python src/preprocessing.py
 
 # Pour entrainer le réseau de neurones
-python ./CNN.py
+python src/CNN.py
 
 # Pour obtenir l'aide du programme
-python ./main.py -h
+python src/main.py -h
 ~~~
 
 ### Origines

@@ -13,3 +13,4 @@ corpus/SemEval2010_task8_testing_keys/*
 corpus/SemEval2010_task8_training/*
 !corpus/SemEval2010_task8_training/README.md
 !corpus/SemEval2010_task8_training/TRAIN_FILE.TXT
+.ipynb_checkpoints/

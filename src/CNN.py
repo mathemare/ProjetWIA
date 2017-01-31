@@ -1,13 +1,10 @@
 """
-Performance (without hyperparameter optimization):
-Accuracy: 0.7943
-Macro-Averaged F1 (without Other relation):  0.7612
+Performance :
+Accuracy : 0.7847
+Macro-Averaged F1 (sans la relation 'Autres'):  0.7603
 
-Performance Zeng et al.
-Macro-Averaged F1 (without Other relation): 0.789
-
-Code was tested with:
-- Tensorflow 0.12.1
+Code testé avec :
+- Tensorflow 0.12.1 & Theano 0.8.2
 - Keras 1.2.1
 - Python 3.5
 """
@@ -66,13 +63,16 @@ f.close()
 print("Embeddings: ",embeddings.shape)
 
 distanceModel1 = Sequential()
-distanceModel1.add(Embedding(max_position, position_dims, input_length=positionTrain1.shape[1]))
+distanceModel1.add(Embedding(max_position, position_dims,
+    input_length=positionTrain1.shape[1]))
 
 distanceModel2 = Sequential()
-distanceModel2.add(Embedding(max_position, position_dims, input_length=positionTrain2.shape[1]))
+distanceModel2.add(Embedding(max_position, position_dims,
+    input_length=positionTrain2.shape[1]))
 
 wordModel = Sequential()
-wordModel.add(Embedding(embeddings.shape[0], embeddings.shape[1], input_length=sentenceTrain.shape[1], weights=[embeddings], trainable=False))
+wordModel.add(Embedding(embeddings.shape[0], embeddings.shape[1],
+    input_length=sentenceTrain.shape[1], weights=[embeddings], trainable=False))
 
 
 model = Sequential()
@@ -91,7 +91,8 @@ model.add(Dropout(0.25))
 model.add(Dense(n_out, activation='softmax'))
 
 
-model.compile(loss='categorical_crossentropy',optimizer='Adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy',optimizer='Adam',
+    metrics=['accuracy'])
 model.summary()
 print("Start training")
 
@@ -117,10 +118,17 @@ def getPrecision(pred_test, yTest, targetLabel):
     return float(correctTargetLabelCount) / targetLabelCount
 
 for epoch in range(nb_epoch):
-    model.fit([sentenceTrain, positionTrain1, positionTrain2], train_y_cat, batch_size=batch_size,
-        callbacks=[TensorBoard(log_dir='./logs', histogram_freq=0, write_graph=True, write_images=True)],
+    model.fit([sentenceTrain, positionTrain1, positionTrain2],
+        train_y_cat, batch_size=batch_size,
+        callbacks=[
+            TensorBoard(log_dir='./logs', histogram_freq=0,
+            write_graph=True, write_images=True)],
         verbose=True,nb_epoch=1)
-    pred_test = model.predict_classes([sentenceTest, positionTest1, positionTest2], verbose=False)
+
+    pred_test = model.predict_classes([sentenceTest,
+                                       positionTest1,
+                                       positionTest2],
+                                       verbose=False)
 
     dctLabels = np.sum(pred_test)
     totalDCTLabels = np.sum(yTest)
