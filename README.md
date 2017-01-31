@@ -15,7 +15,7 @@ Relation trouvée : Entity-Origin(tree, forest)
 ### Utilisation
 
 Le code est testé pour :
-- Tensorflow 0.12.1
+- Tensorflow 0.12.1 ou Theano 0.8.2
 - Keras 1.2.1
 - Python 3.5
 
